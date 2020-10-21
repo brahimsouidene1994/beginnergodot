@@ -58,7 +58,7 @@ func capture(target):
 	$AnimationPlayer.play("Capture")
 	$Pivot.rotation = (jumper.position - position).angle()
 	orbit_start = $Pivot.rotation
-	#target.get_node("Pivot").rotation = (position - target.position).angle()
+	
 
 func _draw():
 	if jumper:
