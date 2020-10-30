@@ -10,6 +10,11 @@ var velocity = Vector2(100, 0)  # start value for testing
 var jump_speed = 1000
 var target = null  # if we're on a circle
 
+func _ready():
+	$Sprite.material.set_shader_param("color", settings.theme["player_body"])
+	$Trail/Points.default_color = settings.theme["player_trail"]
+
+
 #detect the screen touch and, if we’re on a circle, call our jump
 func _unhandled_input(event):
 	if target and event is InputEventScreenTouch and event.pressed:
@@ -20,6 +25,8 @@ func jump():
 	target.implode()
 	target = null
 	velocity = transform.x * jump_speed
+	if settings.enable_sound:
+		$Jump.play()
 
 
 
@@ -27,6 +34,8 @@ func _on_Jumper_area_entered(area):
 	target = area
 	velocity = Vector2.ZERO
 	emit_signal("captured", area)
+	if settings.enable_sound:
+		$Capture.play()
 	
 	
 
