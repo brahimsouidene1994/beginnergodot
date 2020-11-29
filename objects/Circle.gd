@@ -21,7 +21,7 @@ var rotation_speed = PI
 
 func init(_position, _radius=radius, _mode=MODES.LIMITED):
 	set_mode(_mode)
-	position = _position	
+	position = _position
 	radius = _radius
 	$Sprite.material = $Sprite.material.duplicate()
 	$SpriteEffect.material =  $Sprite.material
@@ -41,7 +41,7 @@ func _process(delta):
 		update()
 
 func check_orbit():# Check if the jumper completed a full circle
-	if abs( $Pivot.rotation - orbit_start) > 2 * PI:
+	if abs($Pivot.rotation - orbit_start) > 2 * PI:
 		current_orbits -= 1
 		if settings.enable_sound:
 			$Beep.play()
